@@ -6,6 +6,7 @@ import org.junit.*;
 import java.util.List;
 
 public class MyBikeTest {
+
     //Log
     final static Logger log = Logger.getLogger(MyBikeTest.class.getName());
     private MyBike mb;
@@ -117,5 +118,6 @@ public class MyBikeTest {
     }
 
 }
+
 
 

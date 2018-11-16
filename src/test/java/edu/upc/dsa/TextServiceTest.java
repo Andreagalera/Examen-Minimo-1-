@@ -12,7 +12,6 @@ import javax.ws.rs.client.WebTarget;
 import static org.junit.Assert.assertEquals;
 
 public class TextServiceTest {
-
     private HttpServer server;
     private WebTarget target;
 

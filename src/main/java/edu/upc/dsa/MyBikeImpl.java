@@ -24,7 +24,7 @@ public class MyBikeImpl implements MyBike {
     }
     //Constructor privado
     private MyBikeImpl() {
-        stations = new ArrayList<>();
+        stations = new Station[S];
         bikesofStation = new LinkedList<>();
         bikesofUser = new LinkedList<>();
         usuarios = new HashMap<>();
@@ -32,13 +32,15 @@ public class MyBikeImpl implements MyBike {
 
     //Inicializar listas
     //Array de Staciones
-    private List<Station> stations;
+    private Station stations[];
     //LinkedList the bicis de una estacion
     private LinkedList<Bike> bikesofStation;
     //LinkedList the bicis de un usuario
     private LinkedList<Bike>bikesofUser;
     //Inicializamos el hashmap(key: string; value: Usuarios) de UsuarioClass
     private HashMap<String, UsuarioClass> usuarios;
+    //Inicializar size S
+    int S=0;
 
     //Funciones o metodos
     //Añadir usuario
@@ -54,6 +56,7 @@ public class MyBikeImpl implements MyBike {
         if (S<10) {
             Station s = new Station(idStation, description, max, lat, lon);
             log.info("Estación creada");
+            this.S++;
             }
         else
         {
@@ -63,15 +66,16 @@ public class MyBikeImpl implements MyBike {
     //Añadir Bike
     public void addBike(String idBike, String description, double kms, String idStation) throws StationFullException, StationNotFoundException{
         log.info("Bici para añadir: " + idBike +description +kms +idStation);
-        String theStation=null;
-        Station p =null;
-        for(int i =0; i<this.stations.size();i++) {
-            if (stations.equals(this.stations.get(i).idStation)) {
-                theStation = "si";
+        Station theStation=null;
+        Bike theBike;
+        for(int i =0; i<this.S;i++) {
+            if (stations.equals(this.stations[i].idStation)) {
+                theStation= this.stations[i];
             }
         }
         if (theStation !=null){
-            Bike b =new Bike(idBike, description, kms, idStation);
+            theBike=new Bike(idBike, description, kms, idStation);
+            theStation.addBike(theBike);
             log.info("Bici creada");
         }
         else
@@ -84,12 +88,11 @@ public class MyBikeImpl implements MyBike {
     //Get the bikes of a station ordered by kilometers
     public List<Bike> bikesByStationOrderByKms(String idStation) throws StationNotFoundException{
         log.info("Bike dada: " +idStation);
-        List<Bike> bikes;
-        String theStation=null;
-        Station p =null;
-        for(int i =0; i<this.stations.size();i++) {
-            if (stations.equals(this.stations.get(i).idStation)) {
-                theStation = "si";
+        Station theStation=null;
+        Bike theBike;
+        for(int i =0; i<this.S;i++) {
+            if (stations.equals(this.stations[i].idStation)) {
+                theStation= this.stations[i];
             }
         }
         if(theStation !=null){
@@ -116,11 +119,11 @@ public class MyBikeImpl implements MyBike {
     public Bike getBike(String stationId, String userId) throws UserNotFoundException, StationNotFoundException{
         log.info("Stacion y usuario dados: " +stationId+ userId);
         UsuarioClass theUser = this.usuarios.get(userId);
-        String theStation=null;
-        Station p =null;
-        for(int i =0; i<this.stations.size();i++) {
-            if (stations.equals(this.stations.get(i).idStation)) {
-                theStation = "si";
+        Station theStation=null;
+        Bike theBike;
+        for(int i =0; i<this.S;i++) {
+            if (stations.equals(this.stations[i].idStation)) {
+                theStation= this.stations[i];
             }
         }
         Boolean encontrado=false;
@@ -144,24 +147,20 @@ public class MyBikeImpl implements MyBike {
     //Dame las bicis de un Usuario
     public List<Bike> bikesByUser(String userId) throws UserNotFoundException{
         log.info("Usuario dado: " +userId);
-        List<Bike> bike;
         UsuarioClass theUser = this.usuarios.get(userId);
-        String theStation=null;
-        Station p =null;
-        for(int i =0; i<this.stations.size();i++) {
-            if (stations.equals(this.stations.get(i).idStation)) {
-                theStation = "si";
+        Station theStation=null;
+        Bike theBike;
+        for(int i =0; i<this.S;i++) {
+            if (stations.equals(this.stations[i].idStation)) {
+                theStation= this.stations[i];
             }
         }
         List<Bike> ret = new ArrayList<>();
 
         if (theUser !=null){
-            for(int j=0; j<this.bikesofUser.size(); j++){
 
 
             }
-
-        }
         else{
             log.error("UserNotFoundException");
             throw new UserNotFoundException();
@@ -181,7 +180,7 @@ public class MyBikeImpl implements MyBike {
     public int numStations(){
         log.info("Función para saber numero de Stations");
         int contador;
-        contador= stations.size();
+        contador= this.S;
 
         log.info("Numero de Stations:" +contador);
         return contador;
@@ -190,15 +189,15 @@ public class MyBikeImpl implements MyBike {
     public int numBikes(String idStation) throws StationNotFoundException{
         log.info("Bike dada: " +idStation);
         int contador;
-        String theStation=null;
-        Station p =null;
-        for(int i =0; i<this.stations.size();i++) {
-            if (stations.equals(this.stations.get(i).idStation)) {
-                theStation = "si";
+        Station theStation=null;
+        Bike theBike;
+        for(int i =0; i<this.S;i++) {
+            if (stations.equals(this.stations[i].idStation)) {
+                theStation= this.stations[i];
             }
         }
         if(theStation !=null){
-            contador= stations.size();
+            contador=this.S;
         }
         else {
             log.error("StationNotFoundException");
@@ -212,8 +211,8 @@ public class MyBikeImpl implements MyBike {
     public void clear(){
         instance=null;
     }
-    //Numero de Stations
-    public static final int S = 10;
+
+
 
 
 }

@@ -21,6 +21,7 @@ public class Station{
         this.max=max;
         this.lat=lat;
         this.lon=lon;
+        this.bicisofStation = new LinkedList<>();
     }
 
     //Gets i Sets
@@ -72,5 +73,10 @@ public class Station{
 
     public void setBicisofStation(LinkedList<Bike> bicisofStation) {
         this.bicisofStation = bicisofStation;
+    }
+
+    //Añadir bici
+    public void addBike(Bike bike){
+        this.bicisofStation.add(bike);
     }
 }

@@ -16,6 +16,7 @@ public class UsuarioClass {
         this.idUser=idUser;
         this.name=name;
         this.surname=surname;
+        this.bicisofUser=new LinkedList<>();
 
     }
     //Set i Get
@@ -50,4 +51,5 @@ public class UsuarioClass {
     public void setBicisofUser(LinkedList<Bike> bicisofUser) {
         this.bicisofUser = bicisofUser;
     }
+
 }

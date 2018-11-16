@@ -7,6 +7,9 @@ public class Bike {
     String description;
     double kms;
     String idStation;
+
+    //Constructor JSON
+    public Bike(){ }
     //Constructor
     public Bike(String idBike, String description, double kms, String idStation){
         this.idBike=idBike;
