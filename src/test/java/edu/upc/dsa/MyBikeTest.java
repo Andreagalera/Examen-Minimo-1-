@@ -81,19 +81,19 @@ public class MyBikeTest {
         this.mb.addBike("bike1", "descripton", 55.4, "StationXXXXX");
     }
 
-/**
+
     @Test
     public void testBikesByStation() throws Exception {
 
         List<Bike> bikes = this.mb.bikesByStationOrderByKms("Station1");
 
-        Assert.assertEquals("bike103", bikes.get(0).getBikeId());
+        Assert.assertEquals("bike103", bikes.get(0).getIdBike());
         Assert.assertEquals(10, bikes.get(0).getKms(), 1);
 
-        Assert.assertEquals("bike101", bikes.get(1).getBikeId());
+        Assert.assertEquals("bike101", bikes.get(1).getIdBike());
         Assert.assertEquals(25, bikes.get(1).getKms(), 1);
 
-        Assert.assertEquals("bike102", bikes.get(2).getBikeId());
+        Assert.assertEquals("bike102", bikes.get(2).getIdBike());
         Assert.assertEquals(70, bikes.get(2).getKms(), 1);
     }
 
@@ -102,20 +102,20 @@ public class MyBikeTest {
 
         Bike b1 = this.mb.getBike("Station1", "user1");
         //Si pones getIdBike
-        Assert.assertEquals("bike101", b1.getBikeId());
+        Assert.assertEquals("bike101", b1.getIdBike());
         Assert.assertEquals(2, this.mb.numBikes("Station1"));
 
         Bike b2 = this.mb.getBike("Station2", "user1");
-        Assert.assertEquals("bike201", b2.getBikeId());
+        Assert.assertEquals("bike201", b2.getIdBike());
         Assert.assertEquals(2, this.mb.numBikes("Station1"));
 
         List<Bike> bikes = this.mb.bikesByUser("user1");
 
-        Assert.assertEquals("bike101", bikes.get(0).getBikeId());
-        Assert.assertEquals("bike201", bikes.get(1).getBikeId());
+        Assert.assertEquals("bike101", bikes.get(0).getIdBike());
+        Assert.assertEquals("bike201", bikes.get(1).getIdBike());
 
     }
- */
+
 }
 
 

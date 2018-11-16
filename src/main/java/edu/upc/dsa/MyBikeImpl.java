@@ -84,6 +84,7 @@ public class MyBikeImpl implements MyBike {
     //Get the bikes of a station ordered by kilometers
     public List<Bike> bikesByStationOrderByKms(String idStation) throws StationNotFoundException{
         log.info("Bike dada: " +idStation);
+        List<Bike> bikes;
         String theStation=null;
         Station p =null;
         for(int i =0; i<this.stations.size();i++) {
@@ -143,6 +144,7 @@ public class MyBikeImpl implements MyBike {
     //Dame las bicis de un Usuario
     public List<Bike> bikesByUser(String userId) throws UserNotFoundException{
         log.info("Usuario dado: " +userId);
+        List<Bike> bike;
         UsuarioClass theUser = this.usuarios.get(userId);
         String theStation=null;
         Station p =null;

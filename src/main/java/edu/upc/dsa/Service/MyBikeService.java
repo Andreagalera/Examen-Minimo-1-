@@ -8,9 +8,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.apache.log4j.Logger;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -33,9 +31,9 @@ public class MyBikeService {
     @Path("/{idStation}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllProducts() {
+        List<Bike> productos = this.mb.num("idStation") String idStation);
 
-
-        GenericEntity<List<Bike>> entity = new GenericEntity<List<Bike>>(productos) {
+        GenericEntity<List<Bike>> entity = new GenericEntity<List<Bike>>(bikes) {
         };
         return Response.status(201).entity(entity).build();
     }
@@ -84,6 +82,27 @@ public class MyBikeService {
         };
         return Response.status(201).entity(entity).build();
     }
+
+    @POST
+    @ApiOperation(value = "place an Order", notes = "x")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful"),
+            @ApiResponse(code = 404, message = "User not found")
+    })
+    @Path("/addBike")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response placeAnOrder() throw  {
+
+        String userName = p.getUsuario().getNombre();
+
+            this.mb.realizarPedido(userName, p);
+            return Response.status(201).build();
+        } catch NotFoundException e) {
+            e.printStackTrace();
+            return Response.status(404).build();
+        }
+    }
+
 
 
 
